@@ -1,0 +1,63 @@
+:root{
+    --color: #fafafa;
+}
+
+body {
+    background-color: var(--color);
+}
+
+.box {
+    width:90vw;
+    height: 90vh;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+svg #layer0 {
+    animation: progress-bar 2s linear infinite;
+}
+
+svg #layer1 {
+    stroke: #00b4d8;
+    stroke-dasharray: 20, 1000
+}
+
+svg #layer2 {
+    stroke: hsl(190, 100%, 60%);
+    filter: blur(2px);
+    stroke-dasharray: 5, 1000;
+}
+
+svg{
+    animation: halo-rotate 2s linear infinite;
+}
+
+@keyframes halo-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        stroke-dasharray: 0, 1000;
+    }
+
+    50% {
+        stroke-dasharray: 250, 1000;
+    }
+    100% {
+        stroke-dasharray: 500, 1000;
+    }
+}

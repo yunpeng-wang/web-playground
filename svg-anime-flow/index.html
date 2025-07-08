@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Learn web</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js" defer></script>
+  </head>
+
+  <body>
+    <div class="box">
+      <svg
+        width="200"
+        height="200"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+      >
+        <filter
+          id="filter"
+          color-interpolation-filters="linearRGB"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur
+            stdDeviation="5 5"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="SourceGraphic"
+            edgeMode="none"
+            result="blur"
+          />
+        </filter>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00b4d8ff" />
+          <stop offset="100%" stop-color="#fafafa00" />
+        </linearGradient>
+
+        <circle
+          id="layer0"
+          cx="100"
+          cy="100"
+          r="80"
+          stroke="url(#gradient)"
+          stroke-width="1"
+          fill="none"
+          transform="rotate(-90 100,100)"
+        />
+        <circle
+          <circle
+          id="layer1"
+          filter="url(#filter)"
+          cx="100"
+          cy="100"
+          r="80"
+          stroke="black"
+          stroke-width="5"
+          fill="none"
+          transform="rotate(-95, 100,100)"
+        />
+        <circle
+          id="layer2"
+          cx="100"
+          cy="100"
+          r="80"
+          stroke="black"
+          stroke-width="5"
+          fill="none"
+          transform="rotate(-90, 100,100)"
+        />
+        <circle
+          id="layer2"
+          cx="100"
+          cy="100"
+          r="80"
+          stroke="black"
+          stroke-width="5"
+          fill="none"
+          transform="rotate(-90, 100,100)"
+        />
+      </svg>
+    </div>
+  </body>
+</html>
