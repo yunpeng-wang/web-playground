@@ -1,0 +1,8 @@
+<filter id="filter" color-interpolation-filters="linearRGB" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
+	<feGaussianBlur stdDeviation="10 10" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"/>
+	<feGaussianBlur stdDeviation="10 10" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur3"/>
+	<feMerge x="0%" y="0%" width="100%" height="100%" result="merge1">
+		<feMergeNode in="SourceGraphic"/>
+		<feMergeNode in="blur"/>
+	</feMerge>
+</filter>

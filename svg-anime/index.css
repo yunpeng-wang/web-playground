@@ -1,0 +1,54 @@
+#box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c1c1c1;
+}
+
+#icon {
+    width:80%;
+}
+
+/* .st0 {
+  stroke-dasharray: 50;
+}
+
+.st0.hovering{
+  stroke: #00b4d8;
+  stroke-width: 0.5rem;
+  animation: svg-stroke 1s linear infinite;
+}
+
+@keyframes svg-stroke {
+    from {
+        stroke-dashoffset: 300;
+    }
+    to {
+        stroke-dashoffset: 0
+    }
+    
+} */
+
+.st0 {
+  fill: #fafafa;
+}
+
+.st0.hovering{
+  animation: svg-glow 1s linear infinite;
+  animation-direction: alternate;
+}
+
+.st0.solid {
+  fill: #fafafa;
+}
+@keyframes svg-glow {
+    from {
+        fill: #00b4d8;
+    }
+    to {
+        fill: #fafafa;
+    }
+    
+}
