@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         My ADs Killer
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0
 // @description  Kill Ads
 // @author       Wang Yunpeng
-// @match        *://*.yahoo.co.jp/*
-// @match        *://*.xyg688.com/*
+// @match        *://*/*
 // @run-at       document-idle
 // @grant        none
 // ==/UserScript==
@@ -42,19 +41,19 @@
     panel.scrollTop = panel.scrollHeight;
   }
 
-  function killAdsMain(host_name, ads_search) {    
+  function killAdsMain(host_name, ads_search) {
     logToPanel(`🔄 Run on ${host_name}`);
     let adElems = document.querySelectorAll(ads_search);
     if (adElems.length > 0) {
       adElems.forEach((el) => el.remove());
-      logToPanel(`🔄 Killed ${adElems.length} Ads`);
+      logToPanel(`🟢 Killed ${adElems.length} Ads`);
     } else {
       logToPanel(`🔴 Failed to find Ads`);
     }
-    
+
     // remove panel after 5s
     setTimeout(() => {
-        document.getElementById("debug-panel-wang").remove()
+      document.getElementById("debug-panel-wang").remove();
     }, 5000);
   }
 
@@ -68,8 +67,7 @@
 
   if (host.includes("yahoo.co.jp")) {
     killAdsMain("yahoo.co.jp", '[id*="yads"], [id*="STREAMAD"], [id*="ad_"]');
-  } 
-  else if (host.includes("xyg688")) {
+  } else if (host.includes("xyg688")) {
     killAdsMain("xyg688", '[id*="ads"], [class*="ads"], [id*="ad_"]');
   }
 })();
