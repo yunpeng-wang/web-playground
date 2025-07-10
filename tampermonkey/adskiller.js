@@ -120,5 +120,9 @@
       clearInterval(handler);
       document.getElementById("debug-panel-wang").remove();
     }, 30000);
+  } else {
+    setTimeout(() => {
+      document.getElementById("debug-panel-wang").remove();
+    }, 3000);
   }
 })();
