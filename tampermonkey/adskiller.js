@@ -41,11 +41,24 @@
     panel.scrollTop = panel.scrollHeight;
   }
 
-  function killAdsMain(host_name, ads_search) {
+  function killAdsMain(host_name, ads_search, white_list=[]) {
     logToPanel(`🔄 Run on ${host_name}`);
     let adElems = document.querySelectorAll(ads_search);
     if (adElems.length > 0) {
-      adElems.forEach((el) => el.remove());
+      adElems.forEach((el) => {
+        if (white_list){
+            let class_list = el.className.toLowerCase();
+            let flag = false;
+            for (let i of white_list) {
+                flag = flag || class_list.includes(i);
+                if (flag) {
+                    return; // skip deleting el in white list
+                }
+            }
+        }
+        
+        el.remove();
+      });
       logToPanel(`🟢 Killed ${adElems.length} Ads`);
     } else {
       logToPanel(`🔴 Failed to find Ads`);
