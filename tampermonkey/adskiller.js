@@ -13,22 +13,42 @@
   "use strict";
 
   function initDebugPanel() {
-    let panel = document.createElement("div");
-    panel.id = "debug-panel-wang";
-    panel.style.cssText = `
+    const panelId = "debug-panel-wang";
+
+    // 如果 style 已经存在，就不重复加
+    if (!document.getElementById("debug-panel-style")) {
+      const style = document.createElement("style");
+      style.id = "debug-panel-style";
+      style.textContent = `
+      #${panelId} {
         position: fixed;
         bottom: 0;
         right: 0;
         max-height: 150px;
         width: 300px;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         color: lime;
         font-family: monospace;
         font-size: 12px;
         overflow-y: auto;
         z-index: 99999;
         padding: 10px;
+        transition: background 0.3s ease, opacity 0.3s ease;
+        transform-origin: bottom right;
+        transition: transform 0.5s ease;
+      }
+
+      #${panelId}:hover {
+        background: #1e1e1e;
+        opacity: 1;
+        transform: scale(1.5);
+      }
     `;
+      document.head.appendChild(style);
+    }
+
+    const panel = document.createElement("div");
+    panel.id = panelId;
     document.body.appendChild(panel);
   }
 
@@ -66,6 +86,7 @@
 
   function runScript() {
     const host = location.hostname;
+    let idle = false;
 
     if (host.includes("yahoo.co.jp")) {
       killAdsMain("yahoo.co.jp", '[id*="yads"], [id*="STREAMAD"], [id*="ad_"]');
@@ -76,10 +97,11 @@
         "youtube",
         '[class*="-ad-"], [class*="ADHeader"], [class*="ytwAD"]'
       );
-    }
-    else {
+    } else {
       logToPanel(`💡 Idle for current site`);
+      idle = true;
     }
+    return idle;
   }
 
   // ----------------------
@@ -87,14 +109,16 @@
   // ----------------------
   initDebugPanel();
   logToPanel("🟢 Script Loaded");
-  runScript();
+  let idleFlag = runScript();
 
-  let handler = setInterval(() => {
-    runScript();
-  }, 5000);
+  if (!idleFlag) {
+    let handler = setInterval(() => {
+      runScript();
+    }, 3000);
 
-  setTimeout(() => {
-    clearInterval(handler);
-    document.getElementById("debug-panel-wang").remove();
-  }, 60000);
+    setTimeout(() => {
+      clearInterval(handler);
+      document.getElementById("debug-panel-wang").remove();
+    }, 30000);
+  }
 })();
