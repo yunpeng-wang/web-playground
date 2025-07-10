@@ -15,7 +15,7 @@
 
   function initDebugPanel() {
     let panel = document.createElement("div");
-    panel.id = "debug-panel";
+    panel.id = "debug-panel-wang";
     panel.style.cssText = `
         position: fixed;
         bottom: 0;
@@ -34,7 +34,7 @@
   }
 
   function logToPanel(msg) {
-    const panel = document.getElementById("debug-panel");
+    const panel = document.getElementById("debug-panel-wang");
     if (!panel) return;
     const p = document.createElement("div");
     p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
@@ -42,8 +42,24 @@
     panel.scrollTop = panel.scrollHeight;
   }
 
+  function killAdsMain(host_name, ads_search) {    
+    logToPanel(`🔄 Run on ${host_name}`);
+    let adElems = document.querySelectorAll(ads_search);
+    if (adElems.length > 0) {
+      adElems.forEach((el) => el.remove());
+      logToPanel(`🔄 Killed ${adElems.length} Ads`);
+    } else {
+      logToPanel(`🔴 Failed to find Ads`);
+    }
+    
+    // remove panel after 5s
+    setTimeout(() => {
+        document.getElementById("debug-panel-wang").remove()
+    }, 5000);
+  }
+
   // ----------------------
-  // mainn code
+  // main code
   // ----------------------
   initDebugPanel();
   logToPanel("🟢 Script Loaded");
@@ -51,17 +67,9 @@
   const host = location.hostname;
 
   if (host.includes("yahoo.co.jp")) {
-    logToPanel(`🔄 Run on yahoo.co.jp`);
-    let adElems = document.querySelectorAll(
-      '[id*="yads"], [id*="STREAMAD"], [id*="ad_"]'
-    );
-    adElems.forEach((el) => el.remove());
+    killAdsMain("yahoo.co.jp", '[id*="yads"], [id*="STREAMAD"], [id*="ad_"]');
   } 
   else if (host.includes("xyg688")) {
-    logToPanel(`🔄 Run on xyg688`);
-    let adElems = document.querySelectorAll(
-      '[id*="ads"], [class*="ads"], [id*="ad_"]'
-);
-    adElems.forEach((el) => el.remove());
+    killAdsMain("xyg688", '[id*="ads"], [class*="ads"], [id*="ad_"]');
   }
 })();
