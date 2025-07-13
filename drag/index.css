@@ -1,0 +1,18 @@
+.box {
+    border: 1px solid black;
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+#ball-svg {
+    position: absolute;
+}
+
+#ball {
+    cursor: grab;
+}
+
+#ball.dragging {
+    cursor: grabbing;
+}
