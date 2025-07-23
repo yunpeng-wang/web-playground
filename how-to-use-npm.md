@@ -7,6 +7,19 @@
 3. npm install < 3rd-party js > (will add js in `node_modules`)
 
 > `npm create` will create a project with vite.
+
+# How to use npm to install tsc
+
+1. same
+
+2. same
+
+3. same
+
+4. npx tsc --init (create tsconfig.json)
+
+5. npx tsc (compiler ts to js)
+
 ---
 
 # Pay Attention to JS Type
